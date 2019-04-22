@@ -1,0 +1,222 @@
+fitxerAtlas.png
+size: 960, 924
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Attack
+  rotate: false
+  xy: 0, 554
+  size: 608, 306
+  orig: 608, 306
+  offset: 0, 0
+  index: -1
+blue/BlueD
+  rotate: false
+  xy: 392, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+blue/BlueL
+  rotate: false
+  xy: 28, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+blue/BlueR
+  rotate: false
+  xy: 112, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+blue/BlueU
+  rotate: false
+  xy: 84, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+Down
+  rotate: false
+  xy: 300, 64
+  size: 300, 150
+  orig: 300, 150
+  offset: 0, 0
+  index: -1
+Left
+  rotate: false
+  xy: 0, 64
+  size: 300, 150
+  orig: 300, 150
+  offset: 0, 0
+  index: -1
+LinkAttack
+  rotate: false
+  xy: 0, 426
+  size: 448, 64
+  orig: 448, 64
+  offset: 0, 0
+  index: -1
+LinkAttackB
+  rotate: false
+  xy: 0, 490
+  size: 448, 64
+  orig: 448, 64
+  offset: 0, 0
+  index: -1
+LinkAttackL
+  rotate: false
+  xy: 448, 490
+  size: 448, 64
+  orig: 448, 64
+  offset: 0, 0
+  index: -1
+LinkAttackR
+  rotate: false
+  xy: 448, 426
+  size: 448, 64
+  orig: 448, 64
+  offset: 0, 0
+  index: -1
+LinkSP
+  rotate: false
+  xy: 0, 860
+  size: 832, 64
+  orig: 832, 64
+  offset: 0, 0
+  index: -1
+LinkStand
+  rotate: false
+  xy: 576, 0
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+LinkStandB
+  rotate: false
+  xy: 832, 0
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+LinkStandL
+  rotate: false
+  xy: 448, 0
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+LinkStandR
+  rotate: false
+  xy: 704, 0
+  size: 128, 64
+  orig: 128, 64
+  offset: 0, 0
+  index: -1
+orange/OrangeD
+  rotate: false
+  xy: 140, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+orange/OrangeL
+  rotate: false
+  xy: 56, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+orange/OrangeR
+  rotate: false
+  xy: 0, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+orange/OrangeU
+  rotate: false
+  xy: 168, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+pink/PinkD
+  rotate: false
+  xy: 252, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+pink/PinkL
+  rotate: false
+  xy: 336, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+pink/PinkR
+  rotate: false
+  xy: 308, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+pink/PinkU
+  rotate: false
+  xy: 364, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+red/RedD
+  rotate: false
+  xy: 280, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+red/RedL
+  rotate: false
+  xy: 224, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+red/RedR
+  rotate: false
+  xy: 196, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+red/RedU
+  rotate: false
+  xy: 420, 0
+  size: 28, 14
+  orig: 28, 14
+  offset: 0, 0
+  index: -1
+Right
+  rotate: false
+  xy: 0, 214
+  size: 300, 150
+  orig: 300, 150
+  offset: 0, 0
+  index: -1
+SP
+  rotate: false
+  xy: 300, 214
+  size: 432, 212
+  orig: 432, 212
+  offset: 0, 0
+  index: -1
+Up
+  rotate: false
+  xy: 600, 64
+  size: 300, 150
+  orig: 300, 150
+  offset: 0, 0
+  index: -1
