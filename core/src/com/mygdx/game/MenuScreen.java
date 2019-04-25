@@ -5,12 +5,19 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+import java.awt.Font;
 
 public class MenuScreen extends ScreenBase {
 
     BitmapFont font;
     SpriteBatch batch;
     int altura,amplada;
+    Stage esc;
+    Actor actor;
 
 
 
@@ -24,6 +31,15 @@ public class MenuScreen extends ScreenBase {
         amplada=joc.getAmplada();
 
 
+        esc = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(esc);
+
+        actor=new ActorMenuBackground();
+
+        actor.setPosition(0,0);
+        esc.addActor(actor);
+
+
     }
 
     @Override
@@ -34,13 +50,24 @@ public class MenuScreen extends ScreenBase {
     @Override
     public void render(float delta) {
 
-        font.setColor(Color.BLACK);
 
-        Gdx.app.log("myTag","Render pantalla");
+        /*font.setColor(Color.WHITE);
 
         batch.begin();
-        font.draw(batch,"MenuScreen",(amplada/2)-100,(altura/2)+100);
+        font.draw(batch,"MenuScreen",(amplada/2),(altura/2)-100);
+
         batch.end();
+        */
+
+
+        delta = Gdx.graphics.getDeltaTime();
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        esc.act(delta);
+        esc.draw();
+
+
+
+
 
 
     }

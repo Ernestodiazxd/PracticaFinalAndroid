@@ -1,0 +1,27 @@
+
+fitxerAtlasStages.png
+size: 4096,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+back
+  rotate: false
+  xy: 1084, 2
+  size: 1080, 1920
+  orig: 1080, 1920
+  offset: 0, 0
+  index: -1
+marco
+  rotate: false
+  xy: 2166, 1314
+  size: 1080, 608
+  orig: 1080, 608
+  offset: 0, 0
+  index: -1
+menu
+  rotate: false
+  xy: 2, 2
+  size: 1080, 1920
+  orig: 1080, 1920
+  offset: 0, 0
+  index: -1

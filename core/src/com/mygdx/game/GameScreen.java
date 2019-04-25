@@ -1,26 +1,19 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
-import java.util.Arrays;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameScreen extends ScreenBase {
     SpriteBatch batch;
     int altura,amplada;
-    TextureRegion region;
-    TextureAtlas atlas;
-    TextureRegion anim;
-    TextureRegion[] frames,frames2;
-    Animation animacio;
-    float duracio;
     BitmapFont font;
+    Stage esc;
+    Actor actorScreen,actorLink;
 
 
 
@@ -28,11 +21,26 @@ public class GameScreen extends ScreenBase {
     public GameScreen(Game joc) {
         super(joc);
 
+        //font=new BitmapFont();
         batch=joc.getBatch();
         altura=joc.getAltura();
         amplada=joc.getAmplada();
-        atlas=joc.getAtlas();
-        font=new BitmapFont();
+
+
+        esc = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(esc);
+
+        actorScreen=new ActorGameBackground();
+        actorLink=new ActorPJ();
+
+
+        actorLink.setPosition(amplada/2,altura/2);
+        actorScreen.setPosition(0,0);
+        esc.addActor(actorScreen);
+        esc.addActor(actorLink);
+
+
+
 
     }
 
@@ -63,22 +71,20 @@ public class GameScreen extends ScreenBase {
 
     @Override
     public void render(float delta) {
-        font.setColor(Color.BLACK);
+        //font.setColor(Color.BLACK);
 
         /*
         duracio += Gdx.graphics.getDeltaTime();
         anim= (TextureRegion) animacio.getKeyFrame(duracio,true);
         */
 
-        batch.begin();
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        //font.draw(batch,"GameScreen",(amplada/2)-100,(altura/2)+100);
+        // batch.draw(anim,50,50);
+
+        delta = Gdx.graphics.getDeltaTime();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        font.draw(batch,"GameScreen",(amplada/2)-100,(altura/2)+100);
-
-       // batch.draw(anim,50,50);
-
-
-        batch.end();
+        esc.act(delta);
+        esc.draw();
 
     }
 
@@ -106,7 +112,7 @@ public class GameScreen extends ScreenBase {
     public void dispose() {
         batch.dispose();
         font.dispose();
-        atlas.dispose();
+
 
     }
 }
