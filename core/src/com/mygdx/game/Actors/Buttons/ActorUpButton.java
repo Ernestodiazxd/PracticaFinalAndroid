@@ -1,25 +1,22 @@
-package com.mygdx.game;
+package com.mygdx.game.Actors.Buttons;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class ActorPJ extends Actor {
+public class ActorUpButton extends Actor {
 
     TextureAtlas atlas;
     TextureRegion region;
     TextureRegion[] frames;
-    Animation animacio;
-    float duracio;
-    TextureRegion anim;
 
-    public ActorPJ() {
+
+    public ActorUpButton(){
         atlas=new TextureAtlas("fitxerAtlas.atlas");
-        region=atlas.findRegion("LinkStand");
-        setSize(400,400);
+        region=atlas.findRegion("Up");
+
+        setSize(150,150);
 
         TextureRegion[][]temp=region.split(region.getRegionWidth()/2,region.getRegionHeight());
         frames=new TextureRegion[(temp.length*temp[0].length)];
@@ -31,15 +28,11 @@ public class ActorPJ extends Actor {
             }
         }
 
-        animacio =new Animation(0.15f,frames);
-
-
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        duracio += Gdx.graphics.getDeltaTime();
-        anim= (TextureRegion) animacio.getKeyFrame(duracio,true);
-        batch.draw(anim,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
+        batch.draw(frames[0],getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
     }
+
 }

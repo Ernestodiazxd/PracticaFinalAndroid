@@ -1,17 +1,17 @@
-package com.mygdx.game;
+package com.mygdx.game.Actors.Decoracion;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class ActorGameBackground extends Actor {
+public class ActorMenuBackground extends Actor {
     TextureAtlas atlas;
     TextureRegion region;
 
-    public ActorGameBackground() {
+    public ActorMenuBackground() {
         atlas=new TextureAtlas("fitxerAtlasStages.atlas");
-        region=atlas.findRegion("back");
+        region=atlas.findRegion("menu");
         setSize(region.getRegionWidth(),region.getRegionHeight());
     }
 
@@ -19,5 +19,4 @@ public class ActorGameBackground extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(region,getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
     }
-
 }

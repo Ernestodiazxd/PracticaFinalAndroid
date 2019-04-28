@@ -4,9 +4,9 @@ import com.badlogic.gdx.Screen;
 
 public abstract class ScreenBase implements Screen {
 
-    protected Game joc;
+    protected GhostKiller joc;
 
-    public ScreenBase(Game joc) {
+    public ScreenBase(GhostKiller joc) {
         this.joc = joc;
     }
 }
