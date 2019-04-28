@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,6 +19,7 @@ public class MenuScreen extends ScreenBase {
     int altura,amplada;
     Stage esc;
     Actor actor;
+    Music music;
 
 
 
@@ -39,6 +41,9 @@ public class MenuScreen extends ScreenBase {
         actor.setPosition(0,0);
         esc.addActor(actor);
 
+        music = Gdx.audio.newMusic(Gdx.files.internal("data/battlemusic.mp3"));
+
+
 
     }
 
@@ -59,7 +64,7 @@ public class MenuScreen extends ScreenBase {
         batch.end();
         */
 
-
+        music.play();
         delta = Gdx.graphics.getDeltaTime();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         esc.act(delta);

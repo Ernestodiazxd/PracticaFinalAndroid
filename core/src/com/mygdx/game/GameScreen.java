@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,6 +15,7 @@ public class GameScreen extends ScreenBase {
     BitmapFont font;
     Stage esc;
     Actor actorScreen,actorLink;
+    Music music;
 
 
 
@@ -34,10 +36,13 @@ public class GameScreen extends ScreenBase {
         actorLink=new ActorPJ();
 
 
-        actorLink.setPosition(amplada/2,altura/2);
+        actorLink.setPosition(amplada/2-200,altura/2);
         actorScreen.setPosition(0,0);
         esc.addActor(actorScreen);
         esc.addActor(actorLink);
+
+       music = Gdx.audio.newMusic(Gdx.files.internal("data/battlemusic.mp3"));
+
 
 
 
@@ -81,6 +86,7 @@ public class GameScreen extends ScreenBase {
         //font.draw(batch,"GameScreen",(amplada/2)-100,(altura/2)+100);
         // batch.draw(anim,50,50);
 
+        music.play();
         delta = Gdx.graphics.getDeltaTime();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         esc.act(delta);
