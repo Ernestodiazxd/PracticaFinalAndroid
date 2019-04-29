@@ -11,20 +11,24 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class ActorPJ extends Actor {
 
     TextureAtlas atlas;
-    TextureRegion region,regionup,regionright,regionleft;
-    TextureRegion[] frames,framesup,framesright,framesleft;
-    Animation animacio,animacioup,animacioright,animacioleft;
+    TextureRegion region,regionup,regionright,regionleft,regionsp;
+    TextureRegion[] frames,framesup,framesright,framesleft,framessp;
+    Animation animacio,animacioup,animacioright,animacioleft,animaciosp;
     float duracio;
     TextureRegion anim;
     Animation[]anims;
 
 
+    public static final int MAXARRAY = 5;
     public static final int PJ_STAND = 0;
     public static final int PJ_UP = 1;
     public static final int PJ_RIGHT = 2;
     public static final int PJ_LEFT=3;
+    public static final int PJ_SP=4;
 
     public static int direction;
+
+
 
 
 
@@ -93,16 +97,39 @@ public class ActorPJ extends Actor {
             }
         }
 
+
+        atlas=new TextureAtlas("fitxerAtlas.atlas");
+        regionsp=atlas.findRegion("LinkSP");
+        setSize(400,400);
+
+        temp=regionsp.split(regionsp.getRegionWidth()/13,regionsp.getRegionHeight());
+        framessp=new TextureRegion[(temp.length*temp[0].length)];
+
+        index=0;
+        for (int i=0; i<temp.length;i++){
+            for (int j=0; j< temp[0].length;j++){
+                framessp[index++]=temp[i][j];
+            }
+        }
+
+
+
         animacio =new Animation(0.15f,frames);
         animacioup =new Animation(0.15f,framesup);
         animacioleft =new Animation(0.15f,framesleft);
         animacioright =new Animation(0.15f,framesright);
+        animaciosp =new Animation(0.1f,framessp);
 
-        anims=new Animation[4];
+        anims=new Animation[MAXARRAY];
         anims[0]=animacio;
         anims[1]=animacioup;
         anims[2]=animacioleft;
         anims[3]=animacioright;
+        anims[4]=animaciosp;
+
+
+
+
 
     }
 
@@ -130,6 +157,11 @@ public class ActorPJ extends Actor {
                 duracio += Gdx.graphics.getDeltaTime();
                 anim= (TextureRegion) anims[3].getKeyFrame(duracio,true);
                 return anim;
+            case PJ_SP:
+                duracio += Gdx.graphics.getDeltaTime();
+                anim= (TextureRegion) anims[4].getKeyFrame(duracio,true);
+                return anim;
+
             default:
                 duracio += Gdx.graphics.getDeltaTime();
                 anim= (TextureRegion) anims[0].getKeyFrame(duracio,true);
@@ -154,6 +186,16 @@ public class ActorPJ extends Actor {
     public void goRight(){
         direction=2;
     }
+
+    public void goSP(){
+        direction=4;
+    }
+
+    public static void setDirection(int direction) {
+        ActorPJ.direction = direction;
+    }
+
+
 
 
 }

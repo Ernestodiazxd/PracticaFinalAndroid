@@ -165,6 +165,19 @@ public class GameScreen extends ScreenBase {
 
         });
 
+        actorSpButton.addCaptureListener(new InputListener(){
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.log("tag","SP");
+                pj.goSP();
+                return true;
+            }
+
+
+
+        });
+
 
         esc.act(delta);
         esc.draw();
