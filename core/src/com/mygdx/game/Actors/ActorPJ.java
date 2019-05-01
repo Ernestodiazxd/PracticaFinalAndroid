@@ -11,31 +11,33 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class ActorPJ extends Actor {
 
     TextureAtlas atlas;
-    TextureRegion region,regionup,regionright,regionleft,regionsp;
-    TextureRegion[] frames,framesup,framesright,framesleft,framessp;
-    Animation animacio,animacioup,animacioright,animacioleft,animaciosp;
+    TextureRegion region,regionup,regionright,regionleft,regionsp, regionattack,regionattackup,regionattackright,regionattackleft;
+    TextureRegion[] frames,framesup,framesright,framesleft,framessp,framesattack,framesattackup,framesattackright,framesattackleft;
+    Animation animacio,animacioup,animacioright,animacioleft,animaciosp,animacioattack,animacioattackup,animacioattackright,animacioattackleft;
     float duracio;
     TextureRegion anim;
     Animation[]anims;
 
 
-    public static final int MAXARRAY = 5;
+    public static final int MAXARRAY = 9;
+
     public static final int PJ_STAND = 0;
     public static final int PJ_UP = 1;
     public static final int PJ_RIGHT = 2;
     public static final int PJ_LEFT=3;
     public static final int PJ_SP=4;
+    public static final int PJ_ATTACK=5;
+    public static final int PJ_ATTACKUP=6;
+    public static final int PJ_ATTACKLEFT=7;
+    public static final int PJ_ATTACKRIGHT=8;
 
     public static int direction;
-
-
-
-
 
     public ActorPJ() {
         direction= PJ_STAND;
 
 
+        //Crear sprite quan el pj esta quiet
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         region=atlas.findRegion("LinkStand");
         setSize(400,400);
@@ -98,6 +100,7 @@ public class ActorPJ extends Actor {
         }
 
 
+        //Crear sprite quan el pj utilitza l'attack especial
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         regionsp=atlas.findRegion("LinkSP");
         setSize(400,400);
@@ -113,23 +116,91 @@ public class ActorPJ extends Actor {
         }
 
 
+        //Crear sprite quan el pj ataca
+        atlas=new TextureAtlas("fitxerAtlas.atlas");
+        regionattack=atlas.findRegion("LinkAttack");
+        setSize(400,400);
 
+        temp=regionattack.split(regionattack.getRegionWidth()/7,regionattack.getRegionHeight());
+        framesattack=new TextureRegion[(temp.length*temp[0].length)];
+
+        index=0;
+        for (int i=0; i<temp.length;i++){
+            for (int j=0; j< temp[0].length;j++){
+                framesattack[index++]=temp[i][j];
+            }
+        }
+
+
+        atlas=new TextureAtlas("fitxerAtlas.atlas");
+        regionattackup=atlas.findRegion("LinkAttackB");
+        setSize(400,400);
+
+        temp=regionattackup.split(regionattackup.getRegionWidth()/7,regionattackup.getRegionHeight());
+        framesattackup=new TextureRegion[(temp.length*temp[0].length)];
+
+        index=0;
+        for (int i=0; i<temp.length;i++){
+            for (int j=0; j< temp[0].length;j++){
+                framesattackup[index++]=temp[i][j];
+            }
+        }
+
+
+        atlas=new TextureAtlas("fitxerAtlas.atlas");
+        regionattackleft=atlas.findRegion("LinkAttackL");
+        setSize(400,400);
+
+        temp=regionattackleft.split(regionattackleft.getRegionWidth()/7,regionattackleft.getRegionHeight());
+        framesattackleft=new TextureRegion[(temp.length*temp[0].length)];
+
+        index=0;
+        for (int i=0; i<temp.length;i++){
+            for (int j=0; j< temp[0].length;j++){
+                framesattackleft[index++]=temp[i][j];
+            }
+        }
+
+
+        atlas=new TextureAtlas("fitxerAtlas.atlas");
+        regionattackright=atlas.findRegion("LinkAttackR");
+        setSize(400,400);
+
+        temp=regionattackright.split(regionattackright.getRegionWidth()/7,regionattackright.getRegionHeight());
+        framesattackright=new TextureRegion[(temp.length*temp[0].length)];
+
+        index=0;
+        for (int i=0; i<temp.length;i++){
+            for (int j=0; j< temp[0].length;j++){
+                framesattackright[index++]=temp[i][j];
+            }
+        }
+
+
+        //crear la animació corresponent a cada acció
         animacio =new Animation(0.15f,frames);
         animacioup =new Animation(0.15f,framesup);
         animacioleft =new Animation(0.15f,framesleft);
         animacioright =new Animation(0.15f,framesright);
         animaciosp =new Animation(0.1f,framessp);
+        animacioattack =new Animation(0.1f,framesattack);
+        animacioattackup =new Animation(0.1f,framesattackup);
+        animacioattackleft =new Animation(0.1f,framesattackleft);
+        animacioattackright =new Animation(0.1f,framesattackright);
 
+
+
+        //Guardar animacions al array d'animacions
         anims=new Animation[MAXARRAY];
         anims[0]=animacio;
         anims[1]=animacioup;
         anims[2]=animacioleft;
         anims[3]=animacioright;
         anims[4]=animaciosp;
-
-
-
-
+        anims[5]=animacioattack;
+        anims[6]=animacioattackup;
+        anims[7]=animacioattackleft;
+        anims[8]=animacioattackright;
 
     }
 
@@ -139,27 +210,50 @@ public class ActorPJ extends Actor {
     }
 
     public TextureRegion getPjAnim() {
-
         switch (direction) {
-            case PJ_UP:
-                duracio += Gdx.graphics.getDeltaTime();
-                anim= (TextureRegion) anims[1].getKeyFrame(duracio,true);
-                return anim;
             case PJ_STAND:
                 duracio += Gdx.graphics.getDeltaTime();
                 anim= (TextureRegion) anims[0].getKeyFrame(duracio,true);
                 return anim;
+
+            case PJ_UP:
+                duracio += Gdx.graphics.getDeltaTime();
+                anim= (TextureRegion) anims[1].getKeyFrame(duracio,true);
+                return anim;
+
             case PJ_LEFT:
                 duracio += Gdx.graphics.getDeltaTime();
                 anim= (TextureRegion) anims[2].getKeyFrame(duracio,true);
                 return anim;
+
             case PJ_RIGHT:
                 duracio += Gdx.graphics.getDeltaTime();
                 anim= (TextureRegion) anims[3].getKeyFrame(duracio,true);
                 return anim;
+
             case PJ_SP:
                 duracio += Gdx.graphics.getDeltaTime();
                 anim= (TextureRegion) anims[4].getKeyFrame(duracio,true);
+                return anim;
+
+            case PJ_ATTACK:
+                duracio += Gdx.graphics.getDeltaTime();
+                anim= (TextureRegion) anims[5].getKeyFrame(duracio,true);
+                return anim;
+
+            case PJ_ATTACKUP:
+                duracio += Gdx.graphics.getDeltaTime();
+                anim= (TextureRegion) anims[6].getKeyFrame(duracio,true);
+                return anim;
+
+            case PJ_ATTACKLEFT:
+                duracio += Gdx.graphics.getDeltaTime();
+                anim= (TextureRegion) anims[7].getKeyFrame(duracio,true);
+                return anim;
+
+            case PJ_ATTACKRIGHT:
+                duracio += Gdx.graphics.getDeltaTime();
+                anim= (TextureRegion) anims[8].getKeyFrame(duracio,true);
                 return anim;
 
             default:
@@ -167,35 +261,55 @@ public class ActorPJ extends Actor {
                 anim= (TextureRegion) anims[0].getKeyFrame(duracio,true);
                 return anim;
         }
+
     }
 
+
+    public void goDown() {
+        direction=0;
+    }
 
     public void goUp() {
         direction=1;
 
     }
 
-    public void goDown() {
-        direction=0;
+    public void goRight(){
+        direction=2;
     }
 
     public void goLeft() {
         direction=3;
     }
 
-    public void goRight(){
-        direction=2;
-    }
 
     public void goSP(){
         direction=4;
     }
+
+    public void goAttack(){
+        direction=5;
+    }
+
+    public void goAttackUp(){
+        direction=6;
+    }
+
+    public void goAttackLeft(){
+        direction=7;
+    }
+
+    public void goAttackRight(){
+        direction=8;
+    }
+
 
     public static void setDirection(int direction) {
         ActorPJ.direction = direction;
     }
 
 
-
-
+    public static int getDirection() {
+        return direction;
+    }
 }

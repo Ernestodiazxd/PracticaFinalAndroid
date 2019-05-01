@@ -80,36 +80,10 @@ public class GameScreen extends ScreenBase {
         music = Gdx.audio.newMusic(Gdx.files.internal("data/battlemusic.mp3"));
 
 
-
-
-
-
-
-
-
-
     }
 
     @Override
     public void show() {
-
-        /*
-        region=atlas.findRegion("Link");
-        TextureRegion[][]temp=region.split(region.getRegionWidth()/7,region.getRegionHeight()/4);
-        frames=new TextureRegion[(temp.length*temp[0].length)];
-
-        int index=0;
-        for (int i=0; i<temp.length;i++){
-            for (int j=0; j< temp[0].length;j++){
-                frames[index++]=temp[i][j];
-            }
-        }
-        frames2= Arrays.copyOf(frames,frames.length-4);
-        for(int i=0;i<frames2.length;i++){
-            frames2[i]=frames[i];
-        }
-        animacio=new Animation(0.15f,frames2);
-        */
 
     }
 
@@ -119,7 +93,6 @@ public class GameScreen extends ScreenBase {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        delta = Gdx.graphics.getDeltaTime();
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         Gdx.input.setInputProcessor(esc);
@@ -179,8 +152,37 @@ public class GameScreen extends ScreenBase {
         });
 
 
+        actorAttackButton.addCaptureListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                if (pj.getDirection()==0){
+                    Gdx.app.log("tag","Attack");
+                    pj.goAttack();
+                }
+                if (pj.getDirection()==1) {
+                    Gdx.app.log("tag", "AttackUp");
+                    pj.goAttackUp();
+                }
+
+                if (pj.getDirection()==2) {
+                    Gdx.app.log("tag", "AttackRight");
+                    pj.goAttackRight();
+                }
+
+                if (pj.getDirection()==3) {
+                    Gdx.app.log("tag", "AttackLeft");
+                    pj.goAttackLeft();
+                }
+                return true;
+            }
+
+        });
+
         esc.act(delta);
         esc.draw();
+
+
 
     }
 
@@ -208,6 +210,7 @@ public class GameScreen extends ScreenBase {
     public void dispose() {
         music.dispose();
         batch.dispose();
+        esc.dispose();
 
 
     }
