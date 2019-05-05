@@ -32,9 +32,11 @@ public class ActorPJ extends Actor {
     public static final int PJ_ATTACKRIGHT=8;
 
     public static int direction;
+    public static int life;
 
     public ActorPJ() {
         direction= PJ_STAND;
+        life=3;
 
 
         //Crear sprite quan el pj esta quiet
@@ -269,10 +271,7 @@ public class ActorPJ extends Actor {
         direction=0;
     }
 
-    public void goUp() {
-        direction=1;
-
-    }
+    public void goUp() { direction=1;}
 
     public void goRight(){
         direction=2;
@@ -281,7 +280,6 @@ public class ActorPJ extends Actor {
     public void goLeft() {
         direction=3;
     }
-
 
     public void goSP(){
         direction=4;
@@ -303,13 +301,16 @@ public class ActorPJ extends Actor {
         direction=8;
     }
 
-
-    public static void setDirection(int direction) {
-        ActorPJ.direction = direction;
+    public static int getDirection() {
+        return direction;
     }
 
 
-    public static int getDirection() {
-        return direction;
+    public static int getLife() {
+        return life;
+    }
+
+    public static void setLife(int life) {
+        ActorPJ.life = life;
     }
 }

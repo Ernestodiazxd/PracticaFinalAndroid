@@ -16,7 +16,7 @@ public class ActorUpButton extends Actor {
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         region=atlas.findRegion("Up");
 
-        setSize(150,150);
+        setSize(250,250);
 
         TextureRegion[][]temp=region.split(region.getRegionWidth()/2,region.getRegionHeight());
         frames=new TextureRegion[(temp.length*temp[0].length)];

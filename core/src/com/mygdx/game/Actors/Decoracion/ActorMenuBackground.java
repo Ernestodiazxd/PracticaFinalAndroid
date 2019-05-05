@@ -12,7 +12,7 @@ public class ActorMenuBackground extends Actor {
     public ActorMenuBackground() {
         atlas=new TextureAtlas("fitxerAtlasStages.atlas");
         region=atlas.findRegion("menu");
-        setSize(region.getRegionWidth(),region.getRegionHeight());
+        setSize(region.getRegionWidth(),region.getRegionHeight()+150);
     }
 
     @Override

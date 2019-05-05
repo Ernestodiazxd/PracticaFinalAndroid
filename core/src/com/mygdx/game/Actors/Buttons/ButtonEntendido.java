@@ -1,18 +1,18 @@
-package com.mygdx.game.Actors.Decoracion;
+package com.mygdx.game.Actors.Buttons;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class ActorGameBackground extends Actor {
+public class ButtonEntendido extends Actor {
     TextureAtlas atlas;
     TextureRegion region;
 
-    public ActorGameBackground() {
-        atlas=new TextureAtlas("fitxerAtlasStages.atlas");
-        region=atlas.findRegion("back");
-        setSize(region.getRegionWidth(),region.getRegionHeight()+150);
+    public ButtonEntendido() {
+        atlas= new TextureAtlas("fitxerAtlasExtra.atlas");
+        region = atlas.findRegion("botonTutorial");
+        setSize(region.getRegionWidth(),region.getRegionHeight());
     }
 
     @Override

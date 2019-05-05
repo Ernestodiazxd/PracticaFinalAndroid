@@ -13,7 +13,7 @@ public class ActorMarco extends Actor {
     public ActorMarco() {
         atlas=new TextureAtlas("fitxerAtlasStages.atlas");
         region=atlas.findRegion("marco");
-        setSize(region.getRegionWidth(),region.getRegionHeight());
+        setSize(region.getRegionWidth(),region.getRegionHeight()+150);
     }
 
     @Override

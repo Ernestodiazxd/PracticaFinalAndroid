@@ -26,7 +26,7 @@ public class ActorGhost extends Actor {
     public static final int BLUE = 2;
     public static final int PINK=3;
 
-    public static int direction;
+    public static int color;
 
 
 
@@ -35,7 +35,7 @@ public class ActorGhost extends Actor {
 
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         ghostRed=atlas.findRegion("red/RedU");
-        setSize(200,200);
+        setSize(70,70);
 
         TextureRegion[][]temp=ghostRed.split(ghostRed.getRegionWidth()/2,ghostRed.getRegionHeight());
         framesRed=new TextureRegion[(temp.length*temp[0].length)];
@@ -50,7 +50,7 @@ public class ActorGhost extends Actor {
 
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         ghostOrange=atlas.findRegion("orange/OrangeU");
-        setSize(200,200);
+        setSize(70,70);
 
         temp=ghostOrange.split(ghostOrange.getRegionWidth()/2,ghostOrange.getRegionHeight());
         framesOrange=new TextureRegion[(temp.length*temp[0].length)];
@@ -65,7 +65,7 @@ public class ActorGhost extends Actor {
 
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         ghostBlue=atlas.findRegion("blue/BlueU");
-        setSize(200,200);
+        setSize(70,70);
 
         temp=ghostBlue.split(ghostBlue.getRegionWidth()/2,ghostBlue.getRegionHeight());
         framesBlue=new TextureRegion[(temp.length*temp[0].length)];
@@ -79,7 +79,7 @@ public class ActorGhost extends Actor {
 
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         ghostPink=atlas.findRegion("pink/PinkU");
-        setSize(200,200);
+        setSize(70,70);
 
         temp=ghostPink.split(ghostPink.getRegionWidth()/2,ghostPink.getRegionHeight());
         framesPink=new TextureRegion[(temp.length*temp[0].length)];
@@ -112,7 +112,7 @@ public class ActorGhost extends Actor {
     }
 
     public TextureRegion getGhostAnim() {
-        switch (direction) {
+        switch (color) {
             case RED:
                 duracio += Gdx.graphics.getDeltaTime();
                 anim= (TextureRegion) anims[0].getKeyFrame(duracio,true);
@@ -142,19 +142,16 @@ public class ActorGhost extends Actor {
     }
 
     public void goRed() {
-        direction=0;
+        color=0;
     }
 
-    public void goOrange() {
-        direction=1;
-
-    }
+    public void goOrange() { color=1; }
 
     public void goBlue(){
-        direction=2;
+        color=2;
     }
 
     public void goPink() {
-        direction=3;
+        color=3;
     }
 }
