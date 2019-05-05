@@ -1,0 +1,33 @@
+fitxerAtlasExtra.png
+size: 1965, 1562
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+botonTutorial
+  rotate: false
+  xy: 340, 0
+  size: 570, 262
+  orig: 570, 262
+  offset: 0, 0
+  index: -1
+heart
+  rotate: false
+  xy: 0, 0
+  size: 340, 300
+  orig: 340, 300
+  offset: 0, 0
+  index: -1
+start
+  rotate: false
+  xy: 0, 1433
+  size: 1080, 129
+  orig: 1080, 129
+  offset: 0, 0
+  index: -1
+tutorial
+  rotate: false
+  xy: 910, 0
+  size: 1055, 1433
+  orig: 1055, 1433
+  offset: 0, 0
+  index: -1
