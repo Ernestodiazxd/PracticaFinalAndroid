@@ -9,9 +9,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 
-
+//Actor del jugador
 public class ActorPJ extends Actor {
 
+    //inicialitzar variables
     TextureAtlas atlas;
     TextureRegion region,regionup,regionright,regionleft;
     TextureRegion[] frames,framesup,framesright,framesleft;
@@ -38,7 +39,7 @@ public class ActorPJ extends Actor {
         direction= PJ_STAND;
         life=3;
 
-        //Crear sprite quan el pj esta quiet
+        //Crear els diferents sprites
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         region=atlas.findRegion("LinkStand");
         setSize(400,400);
@@ -118,11 +119,13 @@ public class ActorPJ extends Actor {
 
     }
 
+    //dibuixar
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(getPjAnim(),getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
     }
 
+    //switch per seleccionar l'animació corresponent
     public TextureRegion getPjAnim() {
         switch (direction) {
             case PJ_STAND:
@@ -153,7 +156,7 @@ public class ActorPJ extends Actor {
 
     }
 
-
+//metodes per cambiar de direcció
     public void goDown() {
         direction=0;
     }
@@ -169,11 +172,8 @@ public class ActorPJ extends Actor {
     }
 
 
-    public static int getDirection() {
-        return direction;
-    }
 
-
+    //getter/setter
     public static int getLife() {
         return life;
     }
@@ -182,6 +182,7 @@ public class ActorPJ extends Actor {
         ActorPJ.life = life;
     }
 
+    //controrlar les colisions
     public boolean collides(Rectangle player){
         return player.overlaps(colision);
     }

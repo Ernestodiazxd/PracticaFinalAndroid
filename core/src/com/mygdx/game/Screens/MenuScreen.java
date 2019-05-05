@@ -13,8 +13,9 @@ import com.mygdx.game.Actors.Decoracion.PalabraStart;
 import com.mygdx.game.GhostKiller;
 import com.mygdx.game.ScreenBase;
 
+//Pantalla del menu incial
 public class MenuScreen extends ScreenBase {
-
+    //inicialitzar variables
     GhostKiller joc;
     SpriteBatch batch;
     int altura,amplada;
@@ -26,7 +27,7 @@ public class MenuScreen extends ScreenBase {
 
 
 
-
+    //Constructor per emplenar les variables
     public MenuScreen(GhostKiller joc) {
         super(joc);
         this.joc=joc;
@@ -36,17 +37,22 @@ public class MenuScreen extends ScreenBase {
         amplada=joc.getAmplada();
         batch=joc.getBatch();
 
+        //iniciar musica
         music = Gdx.audio.newMusic(Gdx.files.internal("data/soundmenu.mp3"));
         music.play();
 
+        //inicialitzar l'Stage
         esc = new Stage(new ScreenViewport());
 
+        //inicialitzar els actors
         menuActor=new ActorMenuBackground();
         start=new PalabraStart();
 
+        //Lloc on volem printar els actors
         menuActor.setPosition(0,0);
         start.setPosition(altura/2+10,altura/2+500);
 
+        //Incloure els actos a l'Stage
         esc.addActor(menuActor);
         esc.addActor(start);
 
@@ -57,12 +63,13 @@ public class MenuScreen extends ScreenBase {
 
     }
 
+    //metode que printa en pantalla en bucle
     @Override
     public void render(float delta) {
 
+        //posar el contador a 0 si val 100
         if (contador==100){
             contador=0;
-
         }
 
 
@@ -74,6 +81,7 @@ public class MenuScreen extends ScreenBase {
 
 
 
+        //petit if/else per printar de forma discontínua les paraules que es mostren en pantalla
         if (contador<50){
             start.addAction(Actions.show());
         }else if  (contador>50){
@@ -81,9 +89,12 @@ public class MenuScreen extends ScreenBase {
         }
 
 
+        //printar l'Stage
         esc.act(delta);
         esc.draw();
 
+
+        //augmentar contador
         contador++;
 
 
@@ -103,12 +114,14 @@ public class MenuScreen extends ScreenBase {
 
     }
 
+    //parar la musica al cambiar de pantalla
     @Override
     public void hide() {
         music.stop();
 
     }
 
+    //netejar la memoria
     @Override
     public void dispose() {
         music.dispose();

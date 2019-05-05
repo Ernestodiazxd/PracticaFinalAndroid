@@ -27,8 +27,9 @@ import com.mygdx.game.GhostKiller;
 import com.mygdx.game.GhostPositions;
 import com.mygdx.game.ScreenBase;
 
-
+//Pantalla del joc
 public class GameScreen extends ScreenBase {
+    //inicialitzar variables
     GhostKiller joc;
     private SpriteBatch batch;
     public int altura,amplada;
@@ -46,6 +47,7 @@ public class GameScreen extends ScreenBase {
 
 
 
+    //consturctor per emplenar les variables
     public GameScreen(GhostKiller joc) {
         super(joc);
         this.joc=joc;
@@ -55,8 +57,10 @@ public class GameScreen extends ScreenBase {
         amplada=joc.getAmplada();
 
 
+        //inicialitzar l'Stage
         esc = new Stage(new ScreenViewport());
 
+        //innicialitzar els Actors
         pj=new ActorPJ();
         actorScreen=new ActorGameBackground();
         up=new ActorUpButton();
@@ -70,20 +74,20 @@ public class GameScreen extends ScreenBase {
         heart3=new ActorHeart();
 
 
+        //emplenar l'array de posicions dels enemics
         positions[0]=new GhostPositions(amplada/2-40,altura+150);
         positions[1]=new GhostPositions(amplada/2-40,(int)actorMarco.getY()+650);
         positions[2]=new GhostPositions(amplada,altura/2+300);
         positions[3]=new GhostPositions(-100,altura/2+300);
 
 
+        //lloc aleatori per la printació dels enemics
         randomposition=(int)(Math.random()*4);
 
 
-
+        //Lloc on volem printar els actors
         pj.setPosition(amplada/2-200,altura/2+150);
 
-        System.out.println(amplada/2-200);
-        System.out.println(altura/2+150);
         actorScreen.setPosition(0,0);
         up.setPosition(410,415);
         down.setPosition(410,25);
@@ -98,6 +102,7 @@ public class GameScreen extends ScreenBase {
         heart3.setPosition(amplada-100,altura-100);
 
 
+        //Incloure els actos a l'Stage
         esc.addActor(actorScreen);
         esc.addActor(pj);
         esc.addActor(ghost);
@@ -112,6 +117,7 @@ public class GameScreen extends ScreenBase {
 
 
 
+        //inicialitzar la musica que utilitzarem
         music = Gdx.audio.newMusic(Gdx.files.internal("data/battlemusic.mp3"));
         death = Gdx.audio.newMusic(Gdx.files.internal("data/death.mp3"));
         sound = Gdx.audio.newMusic(Gdx.files.internal("data/sound.mp3"));
@@ -128,6 +134,7 @@ public class GameScreen extends ScreenBase {
     @Override
     public void render(float delta) {
 
+        //if per controlar la printació de enemics
         if (contador%100==1){
 
             ghost = new ActorGhost();
@@ -146,7 +153,10 @@ public class GameScreen extends ScreenBase {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
+        //afegir listeners als botons que realitzen varies accions
         Gdx.input.setInputProcessor(esc);
+
+        //mirar cap amunt
         up.addCaptureListener(new InputListener(){
 
             @Override
@@ -157,6 +167,7 @@ public class GameScreen extends ScreenBase {
             }
         });
 
+        //mirar cap avall
         down.addCaptureListener(new InputListener(){
 
             @Override
@@ -167,6 +178,7 @@ public class GameScreen extends ScreenBase {
             }
         });
 
+        //mirar a l'esquerra
         left.addCaptureListener(new InputListener(){
 
             @Override
@@ -177,6 +189,7 @@ public class GameScreen extends ScreenBase {
             }
         });
 
+        //mirar a la dreta
         right.addCaptureListener(new InputListener(){
 
             @Override
@@ -190,20 +203,25 @@ public class GameScreen extends ScreenBase {
         });
 
 
+        //printar l'Stage
         esc.act(delta);
         esc.draw();
 
 
 
+        //accions que realitzen els enemics
         SequenceAction seq = new SequenceAction();
         seq.addAction(Actions.moveTo(500,1313,4.5f));
         seq.addAction(Actions.hide());
         ghost.addAction(seq);
 
 
+        //coordenades per controrlar les colisions
         ghost.pasarCoordenades((int)ghost.getX(),(int)ghost.getY());
 
 
+        //if per les colisions
+        //si hi ha colisio, es realitzen x accions
         if (pj.collides(ghost.getBounds())) {
 
             /*
@@ -217,11 +235,14 @@ public class GameScreen extends ScreenBase {
             seq2.addAction(Actions.moveTo(0,0,0.5f));
             actorScreen.addAction(seq2);
             sound.play();
+
+            //reduir en 1 la vida del jugador
             pj.setLife(pj.getLife() - 1);
 
         }
         contador++;
 
+        //depentent de les vides, es printen x cors
         if (pj.getLife()==2) {
             heart1.addAction(Actions.hide());
 
@@ -258,11 +279,13 @@ public class GameScreen extends ScreenBase {
 
     }
 
+    //parar la musica al cambiar de pantalla
     @Override
     public void hide() {
     music.stop();
     }
 
+    //netejar la memoria
     @Override
     public void dispose() {
         music.dispose();

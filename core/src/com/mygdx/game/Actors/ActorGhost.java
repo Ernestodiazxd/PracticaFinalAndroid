@@ -6,13 +6,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
+
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 
-
+//Actor dels enemics
 public class ActorGhost extends Actor {
 
+    //inicialitzar variables
     TextureAtlas atlas;
     TextureRegion ghostRed,ghostOrange,ghostBlue,ghostPink;
     TextureRegion[] framesRed,framesOrange,framesBlue,framesPink;
@@ -33,14 +34,14 @@ public class ActorGhost extends Actor {
 
     public static int color;
 
+    //rectangle de colisions
     Rectangle colision;
 
-
-
-
+    //Constructor emplenar les variables
     public ActorGhost() {
 
 
+        //Crear els diferents sprites
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         ghostRed=atlas.findRegion("red/RedU");
         setSize(70,70);
@@ -100,11 +101,14 @@ public class ActorGhost extends Actor {
 
 
 
+        //incloure animacions
         animacioRed =new Animation(0.15f,framesRed);
         animacioOrange =new Animation(0.15f,framesOrange);
         animacioBlue =new Animation(0.15f,framesBlue);
         animacioPink =new Animation(0.15f,framesPink);
 
+
+        //emplenar array d'animacions
         anims=new Animation[MAXARRAY];
 
         anims[0]=animacioRed;
@@ -113,27 +117,32 @@ public class ActorGhost extends Actor {
         anims[3]=animacioPink;
 
 
+
         colision = new Rectangle(x,y,90,90);
 
     }
 
+    //dibuixar
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(getGhostAnim(),getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
 
     }
 
+    //actualizar coordenades per controlar les colisions
     public void pasarCoordenades(int x, int y){
         this.x=x;
         this.y=y;
         colision.setPosition(x,y);
     }
 
+    //mesures del rectangle de colisions
     public Rectangle getBounds(){
         return colision;
     }
 
 
+    //switch per cambiar l'animació
     public TextureRegion getGhostAnim() {
         switch (color) {
             case RED:

@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.game.GhostKiller;
 import com.mygdx.game.ScreenBase;
 
+//pantalla de Fi del Joc
 public class GameOver extends ScreenBase {
 
+    //inicialitzar variables
     GhostKiller joc;
     private SpriteBatch batch;
     public int altura,amplada;
@@ -18,6 +20,7 @@ public class GameOver extends ScreenBase {
     Texture texture;
     TextureRegion region;
 
+    //Constructor per emplenar les variables
     public GameOver(GhostKiller joc) {
         super(joc);
         this.joc=joc;
@@ -25,6 +28,8 @@ public class GameOver extends ScreenBase {
         altura=joc.getAltura();
         amplada=joc.getAmplada();
 
+
+        //Buscar el que necesitem a l'atlas
         texture=new Texture("gameover.png");
         region=new TextureRegion(texture,0,0,texture.getWidth(),texture.getHeight()+150);
 
@@ -36,6 +41,7 @@ public class GameOver extends ScreenBase {
 
     }
 
+    //metode que printa en pantalla en bucle
     @Override
     public void render(float delta) {
 
@@ -72,8 +78,11 @@ public class GameOver extends ScreenBase {
 
     }
 
+    //netejar la memoria
     @Override
     public void dispose() {
+        batch.dispose();
+        texture.dispose();
 
     }
 }

@@ -1,18 +1,14 @@
 package com.mygdx.game.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.game.Actors.ActorGhost;
 import com.mygdx.game.Actors.Buttons.ActorDownButton;
 import com.mygdx.game.Actors.Buttons.ActorLeftButton;
 import com.mygdx.game.Actors.Buttons.ActorRightButton;
@@ -25,7 +21,9 @@ import com.mygdx.game.Actors.Decoracion.VentanaTutorial;
 import com.mygdx.game.GhostKiller;
 import com.mygdx.game.ScreenBase;
 
+//Pantalla del tutorial
 public class TutorialScreen extends ScreenBase {
+    //inicialitzar variables
     GhostKiller joc;
     private SpriteBatch batch;
     public int altura,amplada;
@@ -38,6 +36,7 @@ public class TutorialScreen extends ScreenBase {
     GameScreen g;
 
 
+    //Constructor per emplenar les variables
     public TutorialScreen(GhostKiller joc) {
         super(joc);
         this.g=new GameScreen(joc);
@@ -47,8 +46,11 @@ public class TutorialScreen extends ScreenBase {
         amplada=joc.getAmplada();
         playmusic= Gdx.audio.newMusic(Gdx.files.internal("data/start.mp3"));
 
+
+        //inicialitzar l'Stage
         esc = new Stage(new ScreenViewport());
 
+        //inicialitzar els actors
         actorScreen=new ActorGameBackground();
         up=new ActorUpButton();
         down=new ActorDownButton();
@@ -62,14 +64,14 @@ public class TutorialScreen extends ScreenBase {
         tutorial=new VentanaTutorial();
         entendido=new ButtonEntendido();
 
+
+        //Lloc on volem printar els actors
         actorScreen.setPosition(0,0);
         up.setPosition(410,415);
         down.setPosition(410,25);
         left.setPosition(140,220);
         right.setPosition(675,220);
         actorMarco.setPosition(0,0);
-
-
 
         heart1.setPosition(amplada-280,altura-100);
         heart2.setPosition(amplada-190,altura-100);
@@ -79,6 +81,7 @@ public class TutorialScreen extends ScreenBase {
         entendido.setPosition(250,520);
 
 
+        //Incloure els actos a l'Stage
         esc.addActor(actorScreen);
         esc.addActor(actorMarco);
 
@@ -99,6 +102,8 @@ public class TutorialScreen extends ScreenBase {
 
     }
 
+
+    //metode que printa en pantalla en bucle
     @Override
     public void render(float delta) {
 
@@ -107,6 +112,7 @@ public class TutorialScreen extends ScreenBase {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 
+        //al el botó, cambiem de pantalla
         Gdx.input.setInputProcessor(esc);
         entendido.addCaptureListener(new InputListener(){
 
@@ -118,6 +124,7 @@ public class TutorialScreen extends ScreenBase {
             }
         });
 
+        //printar l'Stage
         esc.act(delta);
         esc.draw();
 
@@ -143,6 +150,7 @@ public class TutorialScreen extends ScreenBase {
 
     }
 
+    //netejar la memoria
     @Override
     public void dispose() {
 

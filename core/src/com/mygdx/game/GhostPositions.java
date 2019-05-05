@@ -1,7 +1,9 @@
 package com.mygdx.game;
 
+//Clase que crea les posicions inicials dels fantasmes
 public class GhostPositions {
 
+    //inicialitzem variables
     private int x;
     private int y;
 
