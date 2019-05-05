@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+
 
 
 public class ActorGhost extends Actor {
@@ -17,6 +20,8 @@ public class ActorGhost extends Actor {
     float duracio;
     TextureRegion anim;
     Animation[]anims;
+    private int x,y;
+
 
 
     public static final int MAXARRAY = 4;
@@ -28,10 +33,13 @@ public class ActorGhost extends Actor {
 
     public static int color;
 
+    Rectangle colision;
+
 
 
 
     public ActorGhost() {
+
 
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         ghostRed=atlas.findRegion("red/RedU");
@@ -46,7 +54,6 @@ public class ActorGhost extends Actor {
                 framesRed[index++]=temp[i][j];
             }
         }
-
 
         atlas=new TextureAtlas("fitxerAtlas.atlas");
         ghostOrange=atlas.findRegion("orange/OrangeU");
@@ -92,6 +99,7 @@ public class ActorGhost extends Actor {
         }
 
 
+
         animacioRed =new Animation(0.15f,framesRed);
         animacioOrange =new Animation(0.15f,framesOrange);
         animacioBlue =new Animation(0.15f,framesBlue);
@@ -104,12 +112,27 @@ public class ActorGhost extends Actor {
         anims[2]=animacioBlue;
         anims[3]=animacioPink;
 
+
+        colision = new Rectangle(x,y,90,90);
+
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(getGhostAnim(),getX(),getY(),getOriginX(),getOriginY(),getWidth(),getHeight(),getScaleX(),getScaleY(),getRotation());
+
     }
+
+    public void pasarCoordenades(int x, int y){
+        this.x=x;
+        this.y=y;
+        colision.setPosition(x,y);
+    }
+
+    public Rectangle getBounds(){
+        return colision;
+    }
+
 
     public TextureRegion getGhostAnim() {
         switch (color) {
@@ -141,17 +164,6 @@ public class ActorGhost extends Actor {
 
     }
 
-    public void goRed() {
-        color=0;
-    }
 
-    public void goOrange() { color=1; }
 
-    public void goBlue(){
-        color=2;
-    }
-
-    public void goPink() {
-        color=3;
-    }
 }
